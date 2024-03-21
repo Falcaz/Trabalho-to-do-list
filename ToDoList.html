@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: #F3F1F5;
+    }
+    input[type="text"] {
+        width: 70%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 8px 16px;
+        background-color: #9A86A4;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button.delete {
+        background-color: #F6C6EA;
+    }
+    button.remove {
+        background-color: #FF7878;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    li span {
+        flex-grow: 1;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Lista de Afazeres</h1>
+    <input type="text" id="taskInput" placeholder="Digite sua tarefa...">
+    <button id="addBtn">Adicionar Tarefa</button>
+
+    <ul id="taskList">
+    </ul>
+</div>
+
+<script>
+    document.getElementById("addBtn").addEventListener("click", function() {
+        var taskInput = document.getElementById("taskInput").value;
+        if (taskInput.trim() !== "") {
+            addTask(taskInput);
+            document.getElementById("taskInput").value = "";
+        } else {
+            alert("Por favor, insira uma tarefa.");
+        }
+    });
+
+    function addTask(task) {
+        var taskList = document.getElementById("taskList");
+        var li = document.createElement("li");
+        li.innerHTML = '<span>' + task + '</span><button class="delete">Concluído</button><button class="remove">Excluir</button>';
+        taskList.appendChild(li);
+
+        li.querySelector("button.delete").addEventListener("click", function() {
+            li.remove();
+        });
+
+        li.querySelector("button.remove").addEventListener("click", function() {
+            li.remove();
+        });
+    }
+</script>
+
+</body>
+</html>
